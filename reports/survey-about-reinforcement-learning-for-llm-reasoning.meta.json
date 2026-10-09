@@ -1,0 +1,35 @@
+{
+  "topic": "survey about reinforcement learning for LLM reasoning",
+  "model": "openai:gpt-6-luna",
+  "elapsed_s": 191.8,
+  "subagent_calls": 4,
+  "tool_calls": {
+    "write_todos": 6,
+    "ls": 2,
+    "read_file": 17,
+    "glob": 2,
+    "task": 4,
+    "edit_file": 8,
+    "write_file": 1,
+    "execute": 3
+  },
+  "task_roles": {
+    "researcher": 3,
+    "citation-checker": 1
+  },
+  "tokens": {
+    "input": 765857,
+    "output": 5904
+  },
+  "n_sources": 12,
+  "source_families": [
+    "arxiv",
+    "hf-search",
+    "web"
+  ],
+  "token_scope": "lead messages only; researcher/checker usage excluded",
+  "sha256": {
+    "report": "f09c0ba699c39fe81fff379d5817b7763ae3035e78e8fc4584b7a7123460a780",
+    "sources": "edab2551bd3ef11f67266a50262330e94a4f8beb9453ab3bf481ccf548e5d78e"
+  }
+}

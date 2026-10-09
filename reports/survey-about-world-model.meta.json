@@ -1,0 +1,36 @@
+{
+  "topic": "survey about world model",
+  "model": "openai:gpt-6-luna",
+  "elapsed_s": 188.9,
+  "subagent_calls": 5,
+  "tool_calls": {
+    "write_todos": 4,
+    "read_file": 12,
+    "ls": 2,
+    "task": 5,
+    "grep": 2,
+    "glob": 1,
+    "write_file": 1,
+    "edit_file": 4,
+    "execute": 3
+  },
+  "task_roles": {
+    "researcher": 3,
+    "citation-checker": 2
+  },
+  "tokens": {
+    "input": 563167,
+    "output": 4618
+  },
+  "n_sources": 15,
+  "source_families": [
+    "arxiv",
+    "hf-search",
+    "web"
+  ],
+  "token_scope": "lead messages only; researcher/checker usage excluded",
+  "sha256": {
+    "report": "6c6375b5425af23ee7c6ed1adea5a08a22f0f7c341749429c6476d7e60ab9e32",
+    "sources": "dd67d56ba9a5df2afbf31ced74bf959442a6b5193e6aa8ea8344e12e3162c267"
+  }
+}

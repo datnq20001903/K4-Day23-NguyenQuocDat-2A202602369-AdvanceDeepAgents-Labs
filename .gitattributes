@@ -1,0 +1,4 @@
+# Preserve downloaded sandbox artifacts exactly on every platform.
+reports/** -text
+# Markdown hard line breaks use trailing spaces; retain original evidence bytes.
+evidence/** -text whitespace=-blank-at-eol

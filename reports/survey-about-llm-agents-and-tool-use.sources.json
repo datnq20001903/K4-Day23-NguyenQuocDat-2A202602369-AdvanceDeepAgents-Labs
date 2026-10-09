@@ -1,0 +1,98 @@
+[
+  {
+    "n": 1,
+    "id": "2210.03629",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "date": "2023-03-10",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "2302.04761",
+    "url": "https://arxiv.org/abs/2302.04761",
+    "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "date": "2023-02-09",
+    "source": "arxiv"
+  },
+  {
+    "n": 3,
+    "id": "2402.01030",
+    "url": "https://huggingface.co/papers/2402.01030",
+    "title": "Executable Code Actions Elicit Better LLM Agents",
+    "date": "2024-02-01",
+    "source": "hf-search"
+  },
+  {
+    "n": 4,
+    "id": "2402.11359",
+    "url": "https://arxiv.org/abs/2402.11359",
+    "title": "Offline Training of Language Model Agents with Functions as Learnable Weights",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 5,
+    "id": "2504.13958",
+    "url": "https://huggingface.co/papers/2504.13958",
+    "title": "ToolRL: Reward is All Tool Learning Needs",
+    "date": "2025-04-16",
+    "source": "hf-search"
+  },
+  {
+    "n": 6,
+    "id": "2304.08244",
+    "url": "https://huggingface.co/papers/2304.08244",
+    "title": "API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs",
+    "date": "2023-04-14",
+    "source": "hf-search"
+  },
+  {
+    "n": 7,
+    "id": "2308.03688",
+    "url": "https://huggingface.co/papers/2308.03688",
+    "title": "AgentBench: Evaluating LLMs as Agents",
+    "date": "2023-08-07",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2309.15817",
+    "url": "https://huggingface.co/papers/2309.15817",
+    "title": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
+    "date": "2023-09-25",
+    "source": "hf-search"
+  },
+  {
+    "n": 9,
+    "id": "2406.13352",
+    "url": "https://huggingface.co/papers/2406.13352",
+    "title": "AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents",
+    "date": "2024-06-19",
+    "source": "hf-search"
+  },
+  {
+    "n": 10,
+    "id": "2507.21504",
+    "url": "https://huggingface.co/papers/2507.21504",
+    "title": "Evaluation and Benchmarking of LLM Agents: A Survey",
+    "date": "2025-07-29",
+    "source": "hf-search"
+  },
+  {
+    "n": 11,
+    "id": "2503.09516",
+    "url": "https://arxiv.org/abs/2503.09516",
+    "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 12,
+    "id": "2509.12867",
+    "url": "https://huggingface.co/papers/2509.12867",
+    "title": "Tool-R1: Sample-Efficient Reinforcement Learning for Agentic Tool Use",
+    "date": "2025-09-16",
+    "source": "hf-search"
+  }
+]

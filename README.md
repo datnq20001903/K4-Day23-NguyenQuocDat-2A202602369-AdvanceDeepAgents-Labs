@@ -107,3 +107,71 @@ Kết quả nằm ở `reports/survey-about-world-model.md` cùng `.sources.json
 - Mỗi lần chạy tốn token LLM và thời gian sandbox. `tokens` trong `meta.json` chỉ đếm tin nhắn của lead, chưa gồm subagent, nên chi phí thật cao hơn. `open_sandbox()` luôn dừng và xóa sandbox khi kết thúc, kể cả khi lỗi. Đừng bỏ qua nó.
 - **Không đưa bí mật vào sandbox.** Sandbox không ngăn được prompt injection hay việc đẩy dữ liệu ra mạng; một trang web độc hại có thể khiến agent chạy lệnh bên trong sandbox. Vì vậy mọi công cụ gọi mạng và mọi khóa ở lại phía host.
 - Nội dung lấy từ web là **dữ liệu không đáng tin**: agent không được làm theo chỉ dẫn nằm trong đó.
+
+## 8. Chạy bản triển khai trên Windows
+
+Trong PowerShell, tại thư mục repo:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+if (!(Test-Path -LiteralPath .env)) { Copy-Item .env.example .env }
+```
+
+Điền `.env` và bỏ dấu `< >` quanh model ID. Chạy một chủ đề hoặc đủ năm chủ đề:
+
+```powershell
+.\.venv\Scripts\python.exe research.py "survey about world model"
+.\.venv\Scripts\python.exe scripts/run_topics.py
+.\.venv\Scripts\python.exe self_check.py
+```
+
+`run_topics.py` chạy tuần tự và bỏ qua triplet đã qua kiểm tra; thêm `--force`
+để tạo lại. Có thể chọn chủ đề bằng `--indices 0 2 3 4` (đánh số từ 0).
+Nếu Daytona báo hết credit, chương trình thử lại chủ đề trên Docker. Cần mở
+Docker Desktop và bật Linux engine trước khi dùng Docker; có thể chủ động đặt
+`SANDBOX=docker` trong `.env`.
+Nếu đã có image Python phù hợp trên máy, đặt `SANDBOX_IMAGE=python:3.11-slim`
+để dùng nó thay cho image mặc định `python:3.12-slim`; mọi image cần Python 3.11+.
+
+Trong `reports/`, `.md` là báo cáo, `.sources.json` ánh xạ số trích dẫn sang
+nguồn, `.meta.json` ghi thời gian, công cụ, số task, các họ nguồn và SHA-256 của
+hai file tải về. `tokens` chỉ tính lead, không phải tổng chi phí của cả đội.
+`evidence/<slug>/` lưu nguyên ghi chú researcher và audit từ sandbox để đối chiếu.
+Không sửa tay báo cáo: sửa mã/prompt rồi chạy lại chủ đề.
+
+OpenAI requests có deadline 120 giây; `gpt-6-luna` dùng reasoning effort `none`
+mặc định (có thể đặt `LAB_REASONING_EFFORT`). Parser Exa đọc tới kết quả JSON-RPC
+đầu tiên rồi đóng SSE. Nếu arXiv hết retry, các query song song dùng chung
+cooldown 5 phút để chuyển sang nguồn khác. Middleware buộc batch researcher
+đầu tiên có ít nhất ba task chạy song song. Auditor dùng `save_citation_audit`
+để lưu/ghi lại đúng file audit; công cụ mạng của auditor chỉ là `web_fetch`.
+
+Nếu một lần chạy Docker thất bại sau khi đã tạo bản nháp, chương trình giữ nguyên
+byte báo cáo/nguồn/ghi chú trong `.runs/checkpoints/<slug>/` trước khi dọn container.
+Cache này được Git bỏ qua, không phải bài nộp. Tiếp tục bằng agent trong sandbox:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/run_topics.py --resume-root .runs/checkpoints
+```
+
+Checkpoint phải do hệ thống sinh; không chỉnh nội dung cache bằng tay.
+
+Checkpoint không dùng được sẽ được giữ lại và chủ đề chạy lại từ đầu.
+Trước khi gọi auditor, middleware kiểm tra trực tiếp nguồn trong sandbox;
+nếu thiếu ba họ nguồn, lead phải nghiên cứu bổ sung và trích dẫn nguồn thật.
+`scripts/run_topics.py --repair-file <feedback.txt>` truyền nhận xét review cho
+agent để sửa trong sandbox và audit lại; dùng `--force` cho báo cáo đã tồn tại.
+Bản nháp dùng `[@URL]`; `prepare_citations.py` chạy trong sandbox để chuyển URL
+sang số hiện tại trước `finalize_citations.py`. Agent sửa `draft.md`, rồi biên dịch,
+finalize và audit lại, giúp citation giữ đúng nguồn khi References đổi thứ tự.
+
+Kiểm tra mã không tốn API:
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+`scripts/preflight.py` kiểm tra model truy cập được; `scripts/sandbox_preflight.py`
+kiểm tra sandbox I/O và session song song. Các preflight cần mạng và sandbox
+preflight tạo một môi trường tạm. Không đưa `.env` lên Git.

@@ -1,0 +1,35 @@
+{
+  "topic": "survey about LLM agents and tool use",
+  "model": "openai:gpt-6-luna",
+  "elapsed_s": 350.0,
+  "subagent_calls": 9,
+  "tool_calls": {
+    "write_todos": 4,
+    "task": 9,
+    "read_file": 10,
+    "ls": 3,
+    "glob": 1,
+    "write_file": 2,
+    "execute": 8,
+    "edit_file": 9
+  },
+  "task_roles": {
+    "researcher": 5,
+    "citation-checker": 4
+  },
+  "tokens": {
+    "input": 847701,
+    "output": 8901
+  },
+  "n_sources": 12,
+  "source_families": [
+    "arxiv",
+    "hf-search",
+    "web"
+  ],
+  "token_scope": "lead messages only; researcher/checker usage excluded",
+  "sha256": {
+    "report": "683432d0b75a71695e7ec5c5e77d1fc66f05c30b0e53f1f40b0120fed3e4948b",
+    "sources": "c56786d824bbd2feee376ff8354b4f3706fdf430d625c930e158ed206490ac54"
+  }
+}
